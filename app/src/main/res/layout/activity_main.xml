@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.fansonq.shapebutton.MainActivity">
+
+
+    <com.fansonq.shapebuttonlib.ShapeButton
+        android:id="@+id/sb1"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="18dp"
+        android:text="Ripple"
+        app:bgDefaultColor="@android:color/holo_green_dark"
+        app:bgPressColor="@android:color/holo_blue_bright"
+        app:bgRippleColor="@android:color/holo_blue_bright"
+        app:fourCornerRadius="30dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:openRipple="true"
+        app:textColor="@android:color/white" />
+
+    <com.fansonq.shapebuttonlib.ShapeButton
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="30dp"
+        android:text="Stroke"
+        app:bgDefaultColor="@android:color/holo_green_dark"
+        app:bgPressColor="@android:color/holo_orange_dark"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sb1"
+        app:openRipple="false"
+        app:rightBottomRadius="30dp"
+        app:rightTopRadius="30dp"
+        app:strokeColor="@android:color/holo_orange_dark"
+        app:strokeWidth="2dp"
+        app:textColor="@android:color/white"
+        tools:layout_editor_absoluteY="112dp" />
+
+</android.support.constraint.ConstraintLayout>
