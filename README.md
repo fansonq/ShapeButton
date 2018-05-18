@@ -20,6 +20,8 @@
 |rightBottomRadius|矩形右下角圆角半径|
 |leftBottomRadius|矩形左下角圆角半径|
 
+![截图](https://github.com/fansonq/ShapeButton/blob/master/screenshot/pic_20180518143209.jpg)
+
 ### 引用方式
 ```
 allprojects {
