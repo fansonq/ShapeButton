@@ -19,3 +19,19 @@
 |rightTopRadius|矩形右上角圆角半径|
 |rightBottomRadius|矩形右下角圆角半径|
 |leftBottomRadius|矩形左下角圆角半径|
+
+### 引用方式
+```
+allprojects {
+		repositories {
+			...
+			maven { url 'https://jitpack.io' }
+		}
+	}
+```
+
+```
+dependencies {
+	        implementation 'com.github.fansonq:ShapeButton:1.0.0'
+	}
+```
