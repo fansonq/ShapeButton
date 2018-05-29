@@ -161,7 +161,9 @@ public class ShapeButton extends AppCompatButton {
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        mRippleDrawable.setTouchEvent(event);
+        if (this.isClickable()){
+            mRippleDrawable.setTouchEvent(event);
+        }
         return super.onTouchEvent(event);
     }
 

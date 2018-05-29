@@ -20,13 +20,15 @@
         app:bgPressColor="@android:color/holo_blue_bright"
         app:bgRippleColor="@android:color/holo_blue_bright"
         app:fourCornerRadius="30dp"
+        app:openRipple="true"
+        app:textColor="@android:color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:openRipple="true"
-        app:textColor="@android:color/white" />
+         />
 
     <com.fansonq.shapebuttonlib.ShapeButton
+        android:id="@+id/sb2"
         android:layout_width="150dp"
         android:layout_height="50dp"
         android:layout_marginEnd="8dp"
