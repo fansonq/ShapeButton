@@ -22,6 +22,50 @@
 
 ![截图](https://github.com/fansonq/ShapeButton/blob/master/screenshot/gif.gif)
 
+### XML使用方式
+```
+<com.fansonq.shapebuttonlib.ShapeButton
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="18dp"
+        android:text="Ripple"
+        app:bgDefaultColor="@android:color/holo_green_dark"
+        app:bgPressColor="@android:color/holo_blue_bright"
+        app:bgRippleColor="@android:color/holo_blue_bright"
+        app:fourCornerRadius="30dp"
+        app:openRipple="true"
+        app:textColor="@android:color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+         />
+```
+
+```
+<com.fansonq.shapebuttonlib.ShapeButton
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="30dp"
+        android:text="Stroke"
+        app:bgDefaultColor="@android:color/holo_green_dark"
+        app:bgPressColor="@android:color/holo_orange_dark"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sb1"
+        app:openRipple="false"
+        app:rightBottomRadius="30dp"
+        app:rightTopRadius="30dp"
+        app:strokeColor="@android:color/holo_orange_dark"
+        app:strokeWidth="2dp"
+        app:textColor="@android:color/white"
+        tools:layout_editor_absoluteY="112dp" />
+```
+
 ### 引用方式
 ```
 allprojects {
