@@ -97,6 +97,8 @@ public class ShapeButton extends AppCompatButton {
 
         //设置按钮的 文字颜色
         setTextColor(mTextColor);
+        //设置文字能在按钮里居中显示
+        setPadding(1,1,1,1);
     }
 
     @Override

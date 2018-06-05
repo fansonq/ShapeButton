@@ -17,7 +17,5 @@ public class MainActivity extends AppCompatActivity {
 
         mSBtn1 = findViewById(R.id.sb1);
         mSBtn2 = findViewById(R.id.sb2);
-        mSBtn1.setClickable(false);
-        mSBtn2.setClickable(false);
     }
 }
