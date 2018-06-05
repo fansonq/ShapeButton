@@ -78,6 +78,6 @@ allprojects {
 
 ```
 dependencies {
-	        implementation 'com.github.fansonq:ShapeButton:1.0.0'
+	        implementation 'com.github.fansonq:ShapeButton:1.0.1'
 	}
 ```
