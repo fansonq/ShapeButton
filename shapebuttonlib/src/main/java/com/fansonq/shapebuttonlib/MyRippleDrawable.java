@@ -79,8 +79,10 @@ public class MyRippleDrawable extends GradientDrawable {
     //默认背景矩形
     private RectF mBgRectF;
 
-    //矩形的四个圆角半径
-    private float mFourCircleRadius;
+    /**
+     * 矩形的四个圆角半径
+     */
+    private float mFourCircleRadius = 0;
 
     //点击按钮时的背景颜色
     private int mBgPressColor = Color.GRAY;
@@ -131,8 +133,12 @@ public class MyRippleDrawable extends GradientDrawable {
             canvas.restoreToCount(layerId);
         } else {
             super.draw(canvas);
-            setCornerRadii(new float[]{mLeftTopRadius, mLeftTopRadius, mRightTopRadius, mRightTopRadius, mRightBottomRadius,
-                    mRightBottomRadius, mLeftBottomRadius, mLeftBottomRadius});
+            if (mFourCircleRadius == 0){
+                setCornerRadii(new float[]{mLeftTopRadius, mLeftTopRadius, mRightTopRadius, mRightTopRadius, mRightBottomRadius,
+                        mRightBottomRadius, mLeftBottomRadius, mLeftBottomRadius});
+            }else {
+                setFourCornerRadius(mFourCircleRadius);
+            }
         }
     }
 
@@ -212,8 +218,8 @@ public class MyRippleDrawable extends GradientDrawable {
                 mRippleCircleRadius = 0;
             }
         } else {
-            setStroke(0, mBgPressColor);
             setColor(mBgPressColor);
+            setStroke(mStrokeWidth, mStrokeColor);
         }
     }
 
@@ -291,7 +297,7 @@ public class MyRippleDrawable extends GradientDrawable {
     }
 
     /**
-     * 设置圆角半径
+     * 设置四个圆角半径
      *
      * @param fourCircleRadius 矩形的四个圆角半径
      */

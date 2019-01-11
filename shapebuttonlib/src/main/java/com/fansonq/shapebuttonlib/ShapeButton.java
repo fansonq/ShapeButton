@@ -7,16 +7,19 @@ import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.support.v7.widget.AppCompatButton;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.MotionEvent;
 
 
 /**
  * @author Created by：Fanson
- *         Created Time: 2018/5/17 11:29
- *         Describe：自定义Shape按钮（带Ripple效果）
+ * Created Time: 2018/5/17 11:29
+ * Describe：自定义Shape按钮（带Ripple效果）
  */
 
 public class ShapeButton extends AppCompatButton {
+
+    private static final String TAG = "MyShapeButton";
 
     /**
      * 是否开启Ripple效果
@@ -43,22 +46,34 @@ public class ShapeButton extends AppCompatButton {
      */
     private float[] mCornerRadii = null;
 
-    //矩形四个角的圆角半径
-    private int mLeftTopRadius,mRightTopRadius,mRightBottomRadius,mLeftBottomRadius;
+    /**
+     * 矩形四个角的圆角半径
+     */
+    private int mLeftTopRadius, mRightTopRadius, mRightBottomRadius, mLeftBottomRadius;
 
-    //背景颜色
-    private int mBgDefaultColor;
+    /**
+     * 背景颜色
+     */
+    private int mBgDefaultColor ;
 
-    //点击按钮时的背景颜色
-    private int mBgPressColor;
+    /**
+     * 点击按钮时的背景颜色
+     */
+    private int mBgPressColor ;
 
-    //Ripple效果的颜色
-    private int mBgRippleColor;
+    /**
+     * Ripple效果的颜色
+     */
+    private int mBgRippleColor ;
 
-    //文字颜色
+    /**
+     * 文字颜色
+     */
     private int mTextColor;
 
-    //每次绘制Ripple的半径（刷新速率）
+    /**
+     * 每次绘制Ripple的半径（刷新速率）
+     */
     private int mDrawRippleRadius;
 
     private MyRippleDrawable mRippleDrawable;
@@ -74,6 +89,7 @@ public class ShapeButton extends AppCompatButton {
     }
 
     private void init(Context context, AttributeSet attrs) {
+        Log.d(TAG, "init");
         if (attrs != null) {
             TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.MyShapeButton);
             mBgDefaultColor = typedArray.getColor(R.styleable.MyShapeButton_bgDefaultColor, Color.WHITE);
@@ -81,14 +97,15 @@ public class ShapeButton extends AppCompatButton {
             mBgRippleColor = typedArray.getColor(R.styleable.MyShapeButton_bgRippleColor, Color.DKGRAY);
             mTextColor = typedArray.getColor(R.styleable.MyShapeButton_textColor, Color.BLACK);
             mDrawRippleRadius = typedArray.getInt(R.styleable.MyShapeButton_drawRippleRadius, 12);
-            mOpenRipple = typedArray.getBoolean(R.styleable.MyShapeButton_openRipple, false);
+            mOpenRipple = typedArray.getBoolean(R.styleable.MyShapeButton_openRipple, true);
             mStrokeWidth = typedArray.getDimensionPixelSize(R.styleable.MyShapeButton_strokeWidth, 0);
             mStrokeColor = typedArray.getColor(R.styleable.MyShapeButton_strokeColor, Color.GRAY);
             mFourCornerRadius = typedArray.getDimensionPixelSize(R.styleable.MyShapeButton_fourCornerRadius, 0);
-            mLeftTopRadius = typedArray.getDimensionPixelSize(R.styleable.MyShapeButton_leftTopRadius,0);
-            mRightTopRadius = typedArray.getDimensionPixelSize(R.styleable.MyShapeButton_rightTopRadius,0);
-            mRightBottomRadius = typedArray.getDimensionPixelSize(R.styleable.MyShapeButton_rightBottomRadius,0);
-            mLeftBottomRadius = typedArray.getDimensionPixelSize(R.styleable.MyShapeButton_leftBottomRadius,0);
+            mLeftTopRadius = typedArray.getDimensionPixelSize(R.styleable.MyShapeButton_leftTopRadius, 0);
+            mRightTopRadius = typedArray.getDimensionPixelSize(R.styleable.MyShapeButton_rightTopRadius, 0);
+            mRightBottomRadius = typedArray.getDimensionPixelSize(R.styleable.MyShapeButton_rightBottomRadius, 0);
+            mLeftBottomRadius = typedArray.getDimensionPixelSize(R.styleable.MyShapeButton_leftBottomRadius, 0);
+            typedArray.recycle();
         }
         mRippleDrawable = new MyRippleDrawable();
         //设置刷新接口
@@ -98,12 +115,13 @@ public class ShapeButton extends AppCompatButton {
         //设置按钮的 文字颜色
         setTextColor(mTextColor);
         //设置文字能在按钮里居中显示
-        setPadding(1,1,1,1);
+        setPadding(1, 1, 1, 1);
     }
 
     @Override
     protected void onSizeChanged(int newWidth, int newHeight, int oldWidth, int oldHeight) {
         super.onSizeChanged(newWidth, newHeight, oldWidth, oldHeight);
+        Log.d(TAG, "onSizeChanged");
         //设置drawable绘制区域
         mRippleDrawable.setBounds(0, 0, getWidth(), getHeight());
         mRippleDrawable.setWidthAndHeight(getWidth(), getHeight());
@@ -111,7 +129,7 @@ public class ShapeButton extends AppCompatButton {
         mRippleDrawable.setBgDefaultColor(mBgDefaultColor);
         mRippleDrawable.setBgPressColor(mBgPressColor);
         mRippleDrawable.setFourCornerRadius(mFourCornerRadius);
-        mRippleDrawable.setEveryCornerRadius(mLeftTopRadius,mRightTopRadius,mRightBottomRadius,mLeftBottomRadius);
+        mRippleDrawable.setEveryCornerRadius(mLeftTopRadius, mRightTopRadius, mRightBottomRadius, mLeftBottomRadius);
         if (mOpenRipple) {
             mRippleDrawable.setRippleColor(mBgRippleColor);
             mRippleDrawable.setDrawRippleRadius(mDrawRippleRadius);
@@ -123,6 +141,7 @@ public class ShapeButton extends AppCompatButton {
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+        Log.d(TAG, "onMeasure");
         int widthMeasure = MeasureSpec.getMode(widthMeasureSpec);
         int widthSize = MeasureSpec.getSize(widthMeasureSpec);
 
@@ -152,18 +171,19 @@ public class ShapeButton extends AppCompatButton {
 
     @Override
     protected void onDraw(Canvas canvas) {
+        Log.d(TAG, "onDraw");
         if (mRippleDrawable != null) {
             mRippleDrawable.draw(canvas);
         }
-        if (canvas == null) {
-            return;
+        if (canvas != null) {
+            super.onDraw(canvas);
         }
-        super.onDraw(canvas);
     }
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        if (this.isClickable()){
+        Log.d(TAG, "onTouchEvent");
+        if (this.isClickable()) {
             mRippleDrawable.setTouchEvent(event);
         }
         return super.onTouchEvent(event);
@@ -172,8 +192,8 @@ public class ShapeButton extends AppCompatButton {
     /**
      * 验证 drawable
      *
-     * @param drawable
-     * @return
+     * @param drawable 图片
+     * @return true/false
      */
     @Override
     protected boolean verifyDrawable(Drawable drawable) {
@@ -187,18 +207,20 @@ public class ShapeButton extends AppCompatButton {
      */
     public ShapeButton setCircleRadius(int cornerRadius) {
         mFourCornerRadius = cornerRadius;
+        mRippleDrawable.setCircleRadius(cornerRadius);
         return this;
     }
 
     /**
      * 设置矩形四个角的圆角半径（左上，右上，右下，左下。八个参数）
-     * @param leftTop 左上
-     * @param rightTop 右上
+     *
+     * @param leftTop     左上
+     * @param rightTop    右上
      * @param rightBottom 右下
-     * @param leftBottom 左下
+     * @param leftBottom  左下
      */
-    private void initRectFCornerRadius(int leftTop,int rightTop,int rightBottom,int leftBottom){
-        setCornerRadii(new float[]{leftTop,leftTop,rightTop,rightTop,rightBottom,rightBottom,leftBottom,leftBottom});
+    private void initRectFCornerRadius(int leftTop, int rightTop, int rightBottom, int leftBottom) {
+        setCornerRadii(new float[]{leftTop, leftTop, rightTop, rightTop, rightBottom, rightBottom, leftBottom, leftBottom});
     }
 
     /**
@@ -211,6 +233,14 @@ public class ShapeButton extends AppCompatButton {
         mRippleDrawable.setCornerRadii(cornerRadii);
     }
 
+    /**
+     * 设置四个角的半径
+     * @param radius 四个角的半径
+     */
+    public void setFourCornerRadius(float radius){
+        mRippleDrawable.setFourCornerRadius(radius);
+    }
+
 
     /**
      * 设置按下时的背景颜色
@@ -219,6 +249,7 @@ public class ShapeButton extends AppCompatButton {
      */
     public void setBgPressColor(int pressColor) {
         mBgPressColor = pressColor;
+        mRippleDrawable.setBgPressColor(pressColor);
     }
 
     /**
@@ -228,6 +259,7 @@ public class ShapeButton extends AppCompatButton {
      */
     public void setBgDefaultColor(int bgDefaultColor) {
         mBgDefaultColor = bgDefaultColor;
+        mRippleDrawable.setBgDefaultColor(bgDefaultColor);
     }
 
     /**
@@ -237,8 +269,18 @@ public class ShapeButton extends AppCompatButton {
      */
     public void setRippleColor(int rippleColor) {
         mBgRippleColor = rippleColor;
+        mRippleDrawable.setRippleColor(rippleColor);
     }
 
+    /**
+     * 设置边框的颜色
+     *
+     * @param strokeColor 边框颜色（int）
+     */
+    public void setStrokeColor(int strokeColor) {
+        mStrokeColor = strokeColor;
+        mRippleDrawable.setMyStroke(mStrokeWidth,strokeColor);
+    }
 
 }
 
