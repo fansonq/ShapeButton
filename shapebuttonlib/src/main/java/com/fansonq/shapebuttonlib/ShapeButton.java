@@ -89,7 +89,6 @@ public class ShapeButton extends AppCompatButton {
     }
 
     private void init(Context context, AttributeSet attrs) {
-        Log.d(TAG, "init");
         if (attrs != null) {
             TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.MyShapeButton);
             mBgDefaultColor = typedArray.getColor(R.styleable.MyShapeButton_bgDefaultColor, Color.WHITE);
@@ -121,7 +120,6 @@ public class ShapeButton extends AppCompatButton {
     @Override
     protected void onSizeChanged(int newWidth, int newHeight, int oldWidth, int oldHeight) {
         super.onSizeChanged(newWidth, newHeight, oldWidth, oldHeight);
-        Log.d(TAG, "onSizeChanged");
         //设置drawable绘制区域
         mRippleDrawable.setBounds(0, 0, getWidth(), getHeight());
         mRippleDrawable.setWidthAndHeight(getWidth(), getHeight());
@@ -141,7 +139,6 @@ public class ShapeButton extends AppCompatButton {
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-        Log.d(TAG, "onMeasure");
         int widthMeasure = MeasureSpec.getMode(widthMeasureSpec);
         int widthSize = MeasureSpec.getSize(widthMeasureSpec);
 
@@ -171,7 +168,6 @@ public class ShapeButton extends AppCompatButton {
 
     @Override
     protected void onDraw(Canvas canvas) {
-        Log.d(TAG, "onDraw");
         if (mRippleDrawable != null) {
             mRippleDrawable.draw(canvas);
         }
@@ -182,7 +178,6 @@ public class ShapeButton extends AppCompatButton {
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        Log.d(TAG, "onTouchEvent");
         if (this.isClickable()) {
             mRippleDrawable.setTouchEvent(event);
         }
